@@ -248,6 +248,48 @@ h3 {
   margin-top: 18px;
 }
 
+.quest-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.quest-flow-step {
+  display: grid;
+  gap: 5px;
+  min-height: 112px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.72);
+  padding: 12px;
+}
+
+html[data-theme="dark"] .quest-flow-step {
+  background: rgba(17, 24, 39, 0.72);
+}
+
+.quest-flow-step span {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.quest-flow-step strong {
+  font-size: 0.98rem;
+}
+
+.quest-flow-step small {
+  color: var(--muted);
+  font-weight: 700;
+}
+
 .btn {
   display: inline-flex;
   align-items: center;
@@ -620,6 +662,43 @@ html[data-theme="dark"] .mascot {
   margin: 0;
   color: var(--muted);
   font-size: 0.86rem;
+}
+
+.evolution-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.evolution-track-item {
+  display: grid;
+  gap: 3px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--soft);
+  color: var(--muted);
+  padding: 9px 8px;
+  text-align: center;
+}
+
+.evolution-track-item span {
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.evolution-track-item strong {
+  font-size: 0.82rem;
+}
+
+.evolution-track-item.active {
+  border-color: var(--primary);
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+.evolution-track-item.current {
+  box-shadow: inset 0 0 0 2px var(--primary);
 }
 
 .evolution-grid {
@@ -1089,6 +1168,12 @@ html[data-theme="dark"] .timer-display {
   flex: 1 1 120px;
 }
 
+.timer-hint {
+  margin: -4px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
 .record-list {
   max-height: 500px;
   overflow: auto;
@@ -1138,6 +1223,10 @@ html[data-theme="dark"] .timer-display {
 
   .evolution-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .quest-flow {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .evolution-lab {
@@ -1212,8 +1301,13 @@ html[data-theme="dark"] .timer-display {
   .task-grid,
   .form-row,
   .toolbar-fields,
-  .evolution-grid {
+  .evolution-grid,
+  .quest-flow {
     grid-template-columns: 1fr;
+  }
+
+  .evolution-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .stat-card {

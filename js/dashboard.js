@@ -46,9 +46,15 @@
   function renderMascot(stats) {
     var stage = getMascotStage(stats.level);
     var mascot = document.getElementById("questMascot");
+    var trackItems = document.querySelectorAll("[data-stage-level]");
     if (mascot) {
       mascot.className = "mascot " + stage.className;
     }
+    trackItems.forEach(function (item) {
+      var stageLevel = Number(item.getAttribute("data-stage-level"));
+      item.classList.toggle("active", stageLevel <= stats.level);
+      item.classList.toggle("current", stageLevel === stage.minLevel);
+    });
     CQ.Common.setText("mascotStageBadge", stage.badge);
     CQ.Common.setText("mascotName", stage.name);
     CQ.Common.setText("mascotDescription", stage.description);

@@ -105,6 +105,21 @@
     CQ.Common.showMessage("focusMessage", "타이머가 초기화되었습니다.", "info");
   }
 
+  function prepareDemoSession() {
+    var noteInput = document.getElementById("sessionNote");
+    if (timerId !== null) {
+      window.clearInterval(timerId);
+      timerId = null;
+    }
+    elapsedSeconds = 60;
+    sessionStartedAt = new Date().toISOString();
+    if (noteInput && noteInput.value.trim() === "") {
+      noteInput.value = "1분 빠른 집중 기록";
+    }
+    renderTimer();
+    CQ.Common.showMessage("focusMessage", "1분 기록이 준비되었습니다. 세션 저장을 누르면 기록됩니다.", "info");
+  }
+
   function saveSession() {
     var noteInput = document.getElementById("sessionNote");
     var note = noteInput.value.trim();
@@ -161,6 +176,7 @@
     document.getElementById("startTimer").addEventListener("click", startTimer);
     document.getElementById("pauseTimer").addEventListener("click", pauseTimer);
     document.getElementById("resetTimer").addEventListener("click", resetTimer);
+    document.getElementById("prepareDemoSession").addEventListener("click", prepareDemoSession);
     document.getElementById("saveSession").addEventListener("click", saveSession);
     document.getElementById("clearSessions").addEventListener("click", clearAllSessions);
     document.getElementById("sessionList").addEventListener("click", function (event) {
