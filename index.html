@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Quest | 대시보드</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/dashboard.js" defer></script>
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Campus Quest 홈">
+        <span class="brand-mark">CQ</span>
+        <span class="brand-text">Campus Quest</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false">메뉴</button>
+      <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
+        <a href="index.html" data-page="home">홈</a>
+        <a href="tasks.html" data-page="tasks">과제</a>
+        <a href="focus.html" data-page="focus">집중</a>
+        <a href="guide.html" data-page="guide">가이드</a>
+        <button class="theme-toggle" id="themeToggle" type="button">다크</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow">과제 관리 + 집중 타이머 + XP 성장</p>
+          <h1>대학생 과제를 퀘스트처럼 관리하세요.</h1>
+          <p class="hero-lead">Campus Quest는 마감일을 확인하고, 과제를 완료하며 XP를 얻고, 집중 시간을 쌓아 레벨을 올리는 학습 관리 웹사이트입니다.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tasks.html">과제 등록하기</a>
+            <a class="btn btn-secondary" href="focus.html">집중 타이머 시작</a>
+          </div>
+        </div>
+        <div class="quest-preview" aria-label="Campus Quest 진행 상황 미리보기">
+          <div class="preview-topline">
+            <span>퀘스트 보드</span>
+            <strong id="heroLevel">레벨 1</strong>
+          </div>
+          <div class="mascot-stage">
+            <div class="mascot stage-1" id="questMascot" aria-hidden="true">
+              <span class="mascot-wing mascot-wing-left"></span>
+              <span class="mascot-wing mascot-wing-right"></span>
+              <span class="mascot-ear mascot-ear-left"></span>
+              <span class="mascot-ear mascot-ear-right"></span>
+              <span class="mascot-crown"></span>
+              <span class="mascot-eye mascot-eye-left"></span>
+              <span class="mascot-eye mascot-eye-right"></span>
+              <span class="mascot-mouth"></span>
+              <span class="mascot-spark mascot-spark-left"></span>
+              <span class="mascot-spark mascot-spark-right"></span>
+            </div>
+            <div class="mascot-copy">
+              <span class="badge badge-primary" id="mascotStageBadge">새내기 탐험가</span>
+              <strong id="mascotName">큐비</strong>
+              <p id="mascotDescription">첫 퀘스트를 준비하는 작은 학습 파트너입니다.</p>
+            </div>
+          </div>
+          <div class="preview-progress">
+            <div class="progress-bar" aria-hidden="true">
+              <span id="heroProgressBar"></span>
+            </div>
+            <p>다음 레벨까지 <span id="heroLevelXp">0</span> / 100 XP</p>
+          </div>
+          <div class="preview-badges">
+            <span class="badge badge-primary" id="heroTotalXp">0 XP</span>
+            <span class="badge badge-warning" id="heroUrgentCount">마감 임박 0개</span>
+            <span class="badge badge-success" id="heroCompletionRate">완료율 0%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">오늘의 학습</p>
+          <h2>학습 현황판</h2>
+        </div>
+        <div class="stats-grid dashboard-stats">
+          <article class="stat-card">
+            <span class="stat-label">현재 레벨</span>
+            <strong id="currentLevel">1</strong>
+            <small id="nextLevelText">레벨 2까지 100 XP</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">총 XP</span>
+            <strong id="totalXp">0</strong>
+            <small>완료 과제와 집중 기록으로 계산</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">완료율</span>
+            <strong id="completionRate">0%</strong>
+            <small id="taskCompletionText">0개 중 0개 완료</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">누적 집중 시간</span>
+            <strong id="totalFocusTime">0분</strong>
+            <small id="todayFocusText">오늘 0분 집중</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">남은 과제</span>
+            <strong id="remainingTasks">0</strong>
+            <small id="urgentTaskText">마감 임박 0개</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-split">
+      <div class="container split-grid">
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">마감 관리</p>
+              <h2>마감 임박 과제</h2>
+            </div>
+            <a class="text-link" href="tasks.html">전체 보기</a>
+          </div>
+          <div class="compact-list" id="urgentTaskList"></div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">상태 요약</p>
+              <h2>학습 스냅샷</h2>
+            </div>
+          </div>
+          <div class="snapshot-list">
+            <div class="snapshot-row">
+              <span>진행 중 과제</span>
+              <strong id="openQuestCount">0</strong>
+            </div>
+            <div class="snapshot-row">
+              <span>완료 과제</span>
+              <strong id="completedQuestCount">0</strong>
+            </div>
+            <div class="snapshot-row">
+              <span>집중 세션</span>
+              <strong id="focusSessionCount">0</strong>
+            </div>
+            <div class="snapshot-row">
+              <span>집중 XP</span>
+              <strong id="focusXp">0 XP</strong>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Campus Quest - HTML/CSS/JavaScript 웹 프로젝트</div>
+  </footer>
+</body>
+</html>

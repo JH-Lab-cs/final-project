@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Quest | 가이드</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/guide.js" defer></script>
+</head>
+<body data-page="guide">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Campus Quest 홈">
+        <span class="brand-mark">CQ</span>
+        <span class="brand-text">Campus Quest</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false">메뉴</button>
+      <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
+        <a href="index.html" data-page="home">홈</a>
+        <a href="tasks.html" data-page="tasks">과제</a>
+        <a href="focus.html" data-page="focus">집중</a>
+        <a href="guide.html" data-page="guide">가이드</a>
+        <button class="theme-toggle" id="themeToggle" type="button">다크</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">프로젝트 가이드</p>
+        <h1>과제와 집중 시간을 한 곳에서 관리하세요.</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container guide-grid">
+        <article class="panel">
+          <p class="eyebrow">사용 순서</p>
+          <h2>사용 방법</h2>
+          <ol class="step-list">
+            <li><strong>과제 등록:</strong> 과목명, 마감일, 중요도, 예상 시간을 입력합니다.</li>
+            <li><strong>집중 타이머 실행:</strong> 공부할 때 타이머를 켜고 집중 시간을 기록합니다.</li>
+            <li><strong>과제 완료 처리:</strong> 완료한 과제를 체크해 XP를 얻습니다.</li>
+            <li><strong>성장 확인:</strong> 대시보드에서 XP, 레벨, 완료율, 집중 시간을 확인합니다.</li>
+          </ol>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">구현 기술</p>
+          <h2>사용한 기술</h2>
+          <ul class="feature-list">
+            <li>HTML5 semantic tag 기반 페이지 구조</li>
+            <li>CSS3 layout, grid, flexbox, media query</li>
+            <li>JavaScript DOM 조작, event, array, object, function</li>
+            <li>localStorage 기반 과제, 집중 기록, 설정 저장</li>
+            <li>setInterval 기반 집중 타이머</li>
+          </ul>
+        </article>
+
+        <article class="panel">
+          <p class="eyebrow">성장 시스템</p>
+          <h2>XP 계산 방식</h2>
+          <ul class="feature-list">
+            <li>긴급 과제 완료 시 35 XP를 얻습니다.</li>
+            <li>보통 과제 완료 시 25 XP, 여유 과제 완료 시 15 XP를 얻습니다.</li>
+            <li>집중 시간은 누적 25분마다 10 XP로 계산됩니다.</li>
+            <li>100 XP를 모을 때마다 다음 레벨로 올라갑니다.</li>
+            <li>XP는 저장된 과제와 집중 기록을 기준으로 자동 계산됩니다.</li>
+          </ul>
+        </article>
+
+        <article class="panel reset-panel">
+          <p class="eyebrow">데모 데이터</p>
+          <h2>프로젝트 데이터 초기화</h2>
+          <p class="muted">Campus Quest의 localStorage 데이터를 지우고 예시 과제 4개를 다시 생성합니다.</p>
+          <div class="inline-message" id="guideMessage" role="status" aria-live="polite"></div>
+          <button class="btn btn-danger" id="resetDemoButton" type="button">데모 데이터 초기화</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container">
+        <div class="section-heading">
+          <p class="eyebrow">큐비 성장 기록</p>
+          <h2>레벨별 진화 단계</h2>
+          <p class="muted" id="evolutionCurrentText">현재 저장된 데이터 기준 레벨을 확인합니다.</p>
+        </div>
+
+        <div class="evolution-grid">
+          <article class="panel evolution-card">
+            <div class="evolution-preview">
+              <div class="mascot stage-1" aria-hidden="true">
+                <span class="mascot-wing mascot-wing-left"></span>
+                <span class="mascot-wing mascot-wing-right"></span>
+                <span class="mascot-ear mascot-ear-left"></span>
+                <span class="mascot-ear mascot-ear-right"></span>
+                <span class="mascot-crown"></span>
+                <span class="mascot-eye mascot-eye-left"></span>
+                <span class="mascot-eye mascot-eye-right"></span>
+                <span class="mascot-mouth"></span>
+                <span class="mascot-spark mascot-spark-left"></span>
+                <span class="mascot-spark mascot-spark-right"></span>
+              </div>
+            </div>
+            <span class="badge badge-primary">레벨 1</span>
+            <h3>큐비</h3>
+            <p class="muted">파란 젤리 몸과 작은 귀를 가진 기본 단계입니다.</p>
+            <button class="btn btn-secondary full-width" type="button" data-evolution-level="1">레벨 1로 확인</button>
+          </article>
+
+          <article class="panel evolution-card">
+            <div class="evolution-preview">
+              <div class="mascot stage-2" aria-hidden="true">
+                <span class="mascot-wing mascot-wing-left"></span>
+                <span class="mascot-wing mascot-wing-right"></span>
+                <span class="mascot-ear mascot-ear-left"></span>
+                <span class="mascot-ear mascot-ear-right"></span>
+                <span class="mascot-crown"></span>
+                <span class="mascot-eye mascot-eye-left"></span>
+                <span class="mascot-eye mascot-eye-right"></span>
+                <span class="mascot-mouth"></span>
+                <span class="mascot-spark mascot-spark-left"></span>
+                <span class="mascot-spark mascot-spark-right"></span>
+              </div>
+            </div>
+            <span class="badge badge-success">레벨 3</span>
+            <h3>스타 큐비</h3>
+            <p class="muted">민트빛으로 변하고 작은 반짝이가 생깁니다.</p>
+            <button class="btn btn-secondary full-width" type="button" data-evolution-level="3">레벨 3로 확인</button>
+          </article>
+
+          <article class="panel evolution-card">
+            <div class="evolution-preview">
+              <div class="mascot stage-3" aria-hidden="true">
+                <span class="mascot-wing mascot-wing-left"></span>
+                <span class="mascot-wing mascot-wing-right"></span>
+                <span class="mascot-ear mascot-ear-left"></span>
+                <span class="mascot-ear mascot-ear-right"></span>
+                <span class="mascot-crown"></span>
+                <span class="mascot-eye mascot-eye-left"></span>
+                <span class="mascot-eye mascot-eye-right"></span>
+                <span class="mascot-mouth"></span>
+                <span class="mascot-spark mascot-spark-left"></span>
+                <span class="mascot-spark mascot-spark-right"></span>
+              </div>
+            </div>
+            <span class="badge badge-warning">레벨 5</span>
+            <h3>윙 큐비</h3>
+            <p class="muted">보라색으로 성장하고 집중 날개가 열립니다.</p>
+            <button class="btn btn-secondary full-width" type="button" data-evolution-level="5">레벨 5로 확인</button>
+          </article>
+
+          <article class="panel evolution-card">
+            <div class="evolution-preview">
+              <div class="mascot stage-4" aria-hidden="true">
+                <span class="mascot-wing mascot-wing-left"></span>
+                <span class="mascot-wing mascot-wing-right"></span>
+                <span class="mascot-ear mascot-ear-left"></span>
+                <span class="mascot-ear mascot-ear-right"></span>
+                <span class="mascot-crown"></span>
+                <span class="mascot-eye mascot-eye-left"></span>
+                <span class="mascot-eye mascot-eye-right"></span>
+                <span class="mascot-mouth"></span>
+                <span class="mascot-spark mascot-spark-left"></span>
+                <span class="mascot-spark mascot-spark-right"></span>
+              </div>
+            </div>
+            <span class="badge badge-danger">레벨 8</span>
+            <h3>아스트라 큐비</h3>
+            <p class="muted">금빛 최종 단계로 왕관과 날개를 함께 갖습니다.</p>
+            <button class="btn btn-secondary full-width" type="button" data-evolution-level="8">레벨 8로 확인</button>
+          </article>
+        </div>
+
+        <div class="panel evolution-lab">
+          <div>
+            <p class="eyebrow">진화 확인</p>
+            <h2>레벨 확인용 데이터 만들기</h2>
+            <p class="muted">버튼을 누르면 예시 과제로 초기화한 뒤, 선택한 레벨에 맞는 집중 기록을 자동으로 추가합니다.</p>
+          </div>
+          <div class="inline-message" id="evolutionMessage" role="status" aria-live="polite"></div>
+          <a class="btn btn-primary" href="index.html">대시보드에서 보기</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Campus Quest - HTML/CSS/JavaScript 웹 프로젝트</div>
+  </footer>
+</body>
+</html>

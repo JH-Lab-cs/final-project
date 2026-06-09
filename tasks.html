@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Quest | 과제</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/storage.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/tasks.js" defer></script>
+</head>
+<body data-page="tasks">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html" aria-label="Campus Quest 홈">
+        <span class="brand-mark">CQ</span>
+        <span class="brand-text">Campus Quest</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" type="button" aria-controls="siteNav" aria-expanded="false">메뉴</button>
+      <nav class="site-nav" id="siteNav" aria-label="주요 메뉴">
+        <a href="index.html" data-page="home">홈</a>
+        <a href="tasks.html" data-page="tasks">과제</a>
+        <a href="focus.html" data-page="focus">집중</a>
+        <a href="guide.html" data-page="guide">가이드</a>
+        <button class="theme-toggle" id="themeToggle" type="button">다크</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">과제 퀘스트 관리</p>
+        <h1>과제를 등록하고 마감일과 XP를 함께 관리하세요.</h1>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="stats-grid compact-stats">
+          <article class="stat-card">
+            <span class="stat-label">레벨</span>
+            <strong data-cq-stat="level">1</strong>
+            <small data-cq-stat="levelProgress">0 / 100 XP</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">총 XP</span>
+            <strong data-cq-stat="totalXp">0 XP</strong>
+            <small>과제와 집중 시간 합산</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">완료율</span>
+            <strong data-cq-stat="completionRate">0%</strong>
+            <small data-cq-stat="taskCounts">총 0개 중 0개 완료</small>
+          </article>
+          <article class="stat-card">
+            <span class="stat-label">마감 임박</span>
+            <strong data-cq-stat="urgentTasks">0</strong>
+            <small>곧 마감되거나 지난 과제</small>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tight">
+      <div class="container two-column">
+        <article class="panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">새 과제</p>
+              <h2>과제 등록</h2>
+            </div>
+          </div>
+          <form id="taskForm" novalidate>
+            <div class="form-group">
+              <label for="taskTitle">과제명</label>
+              <input id="taskTitle" name="title" type="text" maxlength="40" autocomplete="off" required>
+            </div>
+            <div class="form-group">
+              <label for="taskCourse">과목명</label>
+              <input id="taskCourse" name="course" type="text" maxlength="30" autocomplete="off" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="taskDueDate">마감일</label>
+                <input id="taskDueDate" name="dueDate" type="date" required>
+              </div>
+              <div class="form-group">
+                <label for="taskPriority">중요도</label>
+                <select id="taskPriority" name="priority" required>
+                  <option value="high">긴급</option>
+                  <option value="medium" selected>보통</option>
+                  <option value="low">여유</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="taskMinutes">예상 소요 시간(분)</label>
+              <input id="taskMinutes" name="estimatedMinutes" type="number" min="5" max="300" step="5" required>
+            </div>
+            <div class="inline-message" id="taskMessage" role="status" aria-live="polite"></div>
+            <button class="btn btn-primary full-width" type="submit">과제 저장</button>
+          </form>
+        </article>
+
+        <section class="quest-workspace" aria-label="과제 목록 조작">
+          <div class="toolbar panel">
+            <div class="filter-group" aria-label="과제 필터">
+              <button class="filter-btn active" type="button" data-filter="all">전체</button>
+              <button class="filter-btn" type="button" data-filter="active">진행 중</button>
+              <button class="filter-btn" type="button" data-filter="completed">완료</button>
+              <button class="filter-btn" type="button" data-filter="urgent">마감 임박</button>
+            </div>
+            <div class="toolbar-fields">
+              <div class="form-group">
+                <label for="taskSearch">검색</label>
+                <input id="taskSearch" type="search">
+              </div>
+              <div class="form-group">
+                <label for="taskSort">정렬</label>
+                <select id="taskSort">
+                  <option value="latest">최신순</option>
+                  <option value="due">마감일순</option>
+                  <option value="priority">중요도순</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="task-grid" id="taskList"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Campus Quest - HTML/CSS/JavaScript 웹 프로젝트</div>
+  </footer>
+</body>
+</html>
