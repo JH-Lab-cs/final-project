@@ -75,6 +75,16 @@
     return createBadge("진행 중", "badge-primary");
   }
 
+  function getDdayBadgeClass(task) {
+    if (task.completed) {
+      return "badge-muted";
+    }
+    if (CQ.Storage.getDayDiff(task.dueDate) < 0) {
+      return "badge-danger";
+    }
+    return "badge-warning";
+  }
+
   function createTaskCard(task) {
     var card = CQ.Common.createElement("article", "task-card");
     var top = CQ.Common.createElement("div", "task-card-top");
@@ -101,7 +111,7 @@
     titleBlock.appendChild(title);
     titleBlock.appendChild(course);
     top.appendChild(titleBlock);
-    top.appendChild(createBadge(CQ.Storage.getDdayLabel(task), task.completed ? "badge-muted" : "badge-warning"));
+    top.appendChild(createBadge(CQ.Storage.getDdayLabel(task), getDdayBadgeClass(task)));
 
     badgeRow.appendChild(getStatusBadge(task));
     badgeRow.appendChild(createBadge(priorityLabels[task.priority], priorityClass[task.priority]));
