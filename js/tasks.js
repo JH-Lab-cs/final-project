@@ -105,6 +105,7 @@
 
     badgeRow.appendChild(getStatusBadge(task));
     badgeRow.appendChild(createBadge(priorityLabels[task.priority], priorityClass[task.priority]));
+    badgeRow.appendChild(createBadge("보상 +" + CQ.Storage.getPriorityXp(task.priority) + " XP", "badge-primary"));
 
     meta.appendChild(CQ.Common.createElement("span", "", "마감일 " + task.dueDate));
     meta.appendChild(CQ.Common.createElement("span", "", "예상 " + task.estimatedMinutes + "분"));

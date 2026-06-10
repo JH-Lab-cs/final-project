@@ -114,7 +114,7 @@
     elapsedSeconds = 60;
     sessionStartedAt = new Date().toISOString();
     if (noteInput && noteInput.value.trim() === "") {
-      noteInput.value = "1분 빠른 집중 기록";
+      noteInput.value = "1분 집중 기록";
     }
     renderTimer();
     CQ.Common.showMessage("focusMessage", "1분 기록이 준비되었습니다. 세션 저장을 누르면 기록됩니다.", "info");

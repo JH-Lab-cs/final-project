@@ -1103,11 +1103,22 @@ select:focus {
 .task-card.completed {
   border-color: var(--success);
   background: linear-gradient(135deg, var(--success-soft), var(--surface));
+  opacity: 0.86;
+}
+
+.task-card.completed:hover {
+  opacity: 1;
 }
 
 .task-title {
   margin: 0 0 3px;
   font-size: 1.02rem;
+}
+
+.task-card.completed .task-title {
+  color: var(--muted);
+  text-decoration: line-through;
+  text-decoration-thickness: 2px;
 }
 
 .task-course,

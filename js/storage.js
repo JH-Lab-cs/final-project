@@ -338,12 +338,16 @@
       dateA.getDate() === dateB.getDate();
   }
 
+  function getPriorityXp(priority) {
+    return PRIORITY_XP[priority] || 0;
+  }
+
   function getTaskXp(tasks) {
     return tasks.reduce(function (total, task) {
       if (!task.completed) {
         return total;
       }
-      return total + (PRIORITY_XP[task.priority] || 0);
+      return total + getPriorityXp(task.priority);
     }, 0);
   }
 
@@ -470,6 +474,7 @@
     getDdayLabel: getDdayLabel,
     isUrgentTask: isUrgentTask,
     isValidDateInput: isValidDateInput,
+    getPriorityXp: getPriorityXp,
     formatTimer: formatTimer,
     formatShortDuration: formatShortDuration,
     toDateInputValue: toDateInputValue,
